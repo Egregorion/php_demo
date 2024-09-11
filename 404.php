@@ -1,3 +1,5 @@
+<!-- à retravailler avec les require -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
