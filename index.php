@@ -1,8 +1,14 @@
 <?php 
 require_once('partials/header.php'); 
 $membres = getAllMembers();
+//(isset($_SESSION['user']) && !empty($_SESSION['user'])) ? $user =  $_SESSION['user']['email'] : $user = "invité"; 
+if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+    $user = $_SESSION['user']['email'];
+}else{
+    $user = "invité";
+}
 ?>
-
+    <p>Bienvenu <?php echo $user ?></p>
     <h1>DWWM RODEZ 2024, la GOAT</h1>
     <?php foreach($membres as $membre){ 
         $role = getRoleNameByRoleId($membre['role_id']); 

@@ -59,3 +59,13 @@ function insertRoleIntoDatabase($name) {
    $stmt->bindParam(':name', $name);
    $stmt->execute();
 }
+
+function isUser($email) {
+    $dbh = dbconnect();
+    $query= "SELECT * FROM users WHERE email = :email";
+    $stmt = $dbh->prepare($query);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute(); 
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
