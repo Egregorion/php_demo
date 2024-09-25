@@ -12,7 +12,7 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
     <h1>DWWM RODEZ 2024, la GOAT</h1>
     <?php foreach($membres as $membre){ 
         $role = getRoleNameByRoleId($membre['role_id']); 
-        $interests = getMemberInterestNameByMemberId($membre['id']);
+        $interests = getMemberInterestsByMemberId($membre['id']);
         ?>
         <div>
             <h2><?php echo $membre['nom'] . ' ' . $membre['prenom']?></h2>
