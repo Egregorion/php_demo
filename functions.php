@@ -1,20 +1,15 @@
 <?php 
 
-function dbconnect() {
-    try{
-        $dbh = new PDO('mysql:host=localhost;dbname=dwwm_rodez', 'root', '');
-        return $dbh;
-    }catch(PDOException $e){
-        echo $e->getMessage();
-    }
-}
+require_once 'models/entities/Membres.php';
+
+
 
 function getAllMembers(){
     $dbh = dbconnect();
     $query = "SELECT * FROM membres";
     $stmt = $dbh->prepare($query); //la requête va envoyer les résultats dans un objet PDO Statement qu'on ne peut pas exploiter tel quel
     $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(PDO::FETCH_CLASS, 'Membres');
     return $results;
 }
 
