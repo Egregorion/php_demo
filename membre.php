@@ -1,17 +1,16 @@
 <?php 
 
-require_once('partials/header.php'); 
+require_once './models/managers/MembresManager.php';
 
 if(isset($_GET['id']) && !empty($_GET['id'])){
     $id = $_GET['id'];
-    $membre = getMemberInfosByMemberId($id);
+    $membre = MembresManager::getMemberInfosByMemberId($id);
     //var_dump($membre);
 }else {
     header('location:404.php');
 }
-?>
 
-    <h1><?php echo $membre['nom'] . ' ' . $membre['prenom'] ?></h1>
+require_once './vues/membreVue.php';
 
 
-<?php require_once('partials/footer.php') ?>
+  

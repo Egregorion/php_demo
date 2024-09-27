@@ -14,4 +14,15 @@ class MembresManager
         $results = $stmt->fetchAll(PDO::FETCH_CLASS, 'Membres');
         return $results;
     }
+
+    public static function getMemberInfosByMemberId($id){
+        $dbh = dbconnect();
+        $query = "SELECT * FROM membres WHERE membres.id = :id";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Membres');
+        $result = $stmt->fetch();
+        return $result;
+    }
 }
